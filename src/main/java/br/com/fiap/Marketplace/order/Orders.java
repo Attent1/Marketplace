@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.UUID;
 
 @Data
-@Entity
-public class Order {
+@Entity(name = "ORDERS")
+public class Orders {
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -25,9 +25,6 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-
-    @OneToMany(mappedBy = "order")
-    private List<OrderItem> orderItens;
 
     @NotNull
     private BigDecimal total;

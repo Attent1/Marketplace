@@ -13,7 +13,7 @@ import jakarta.validation.constraints.NotNull;
 import java.util.UUID;
 
 @Data
-@Entity
+@Entity(name = "RATING")
 public class Rating {
 
     @Id

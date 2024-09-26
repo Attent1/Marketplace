@@ -34,9 +34,6 @@ public class Product {
     private int stock;
 
     @OneToMany(mappedBy = "product")
-    private List<OrderItem> orderItens;
-
-    @OneToMany(mappedBy = "product")
     private List<Rating> ratings;
     
 }

@@ -1,17 +1,23 @@
 package br.com.fiap.Marketplace.orderItem;
 
-import br.com.fiap.Marketplace.order.Order;
+import br.com.fiap.Marketplace.order.Orders;
 import br.com.fiap.Marketplace.product.Product;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 import jakarta.persistence.Entity;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class OrderItem {
 
     @Id
@@ -20,7 +26,7 @@ public class OrderItem {
 
     @ManyToOne
     @JoinColumn(name = "order_id")
-    private Order order;
+    private Orders order;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
