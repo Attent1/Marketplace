@@ -1,5 +1,6 @@
 package br.com.fiap.Marketplace.order;
 
+import br.com.fiap.Marketplace.order.dto.OrderRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,8 +21,8 @@ public class OrderController {
     }
 
     @PostMapping
-    public Orders createOrder(@RequestBody Orders order) {
-        return orderService.createOrder(order);
+    public Orders createOrder(@RequestBody OrderRequest orderRequest) {
+        return orderService.createOrder(orderRequest.toModel());
     }
     
 }

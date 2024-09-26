@@ -1,6 +1,5 @@
 package br.com.fiap.Marketplace.product;
 
-import br.com.fiap.Marketplace.orderItem.OrderItem;
 import br.com.fiap.Marketplace.rating.Rating;
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.Size;

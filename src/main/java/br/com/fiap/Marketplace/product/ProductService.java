@@ -20,5 +20,9 @@ public class ProductService {
     public List<Product> findAll() {
         return productRepository.findAll();
     }
+
+    public Product updateProduct(Product product) {
+        return productRepository.save(product);
+    }
     
 }

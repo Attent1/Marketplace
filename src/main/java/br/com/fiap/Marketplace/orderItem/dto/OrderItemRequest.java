@@ -9,13 +9,11 @@ import java.util.UUID;
 public record OrderItemRequest(Orders order, Product product, int quantity ) {
 
     public OrderItem toModel() {
-
         return OrderItem.builder()
                 .order(order)
                 .product(product)
                 .quantity(quantity)
-                .build()
-                ;
+                .build();
     }
 
 }
