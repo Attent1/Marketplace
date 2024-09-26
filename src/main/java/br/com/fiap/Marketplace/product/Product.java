@@ -1,15 +1,17 @@
 package br.com.fiap.Marketplace.product;
 
-import br.com.fiap.Marketplace.rating.Rating;
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import org.springframework.hateoas.EntityModel;
 
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.UUID;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Data
 @Entity
@@ -32,7 +34,11 @@ public class Product {
     @NotNull
     private int stock;
 
-    @OneToMany(mappedBy = "product")
-    private List<Rating> ratings;
-    
+    public EntityModel<Product> toEntityModel() {
+        EntityModel<Product> productModel = EntityModel.of(this);
+        productModel.add(linkTo(methodOn(ProductController.class).getProductById(id)).withSelfRel());
+        productModel.add(linkTo(methodOn(ProductController.class).getProducts(null)).withRel("products"));
+        return productModel;
+    }
+
 }

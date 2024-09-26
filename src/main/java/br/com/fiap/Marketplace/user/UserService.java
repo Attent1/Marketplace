@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -22,4 +23,14 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public User updateUser(UUID id, User user) {
+        userRepository.findById(id).orElseThrow(() -> new RuntimeException("Rating Not Found"));
+        user.setId(id);
+        return userRepository.save(user);
+    }
+
+    public void deleteUser(UUID id) {
+        userRepository.findById(id).orElseThrow(() -> new RuntimeException("Rating Not Found"));
+        userRepository.deleteById(id);
+    }
 }

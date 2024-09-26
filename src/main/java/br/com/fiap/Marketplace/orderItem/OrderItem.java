@@ -12,6 +12,10 @@ import java.math.BigDecimal;
 import java.util.UUID;
 import jakarta.persistence.Entity;
 import lombok.NoArgsConstructor;
+import org.springframework.hateoas.EntityModel;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Data
 @Entity
@@ -38,4 +42,13 @@ public class OrderItem {
     @NotNull
     private BigDecimal price;
 
+    public EntityModel<OrderItem> toEntityModel() {
+        EntityModel<OrderItem> entityModel = EntityModel.of(this);
+
+        entityModel.add(linkTo(methodOn(OrderItemController.class).getOrderItems(null)).withRel("orderItems"));
+        entityModel.add(linkTo(methodOn(OrderItemController.class).getOrderItemById(id)).withRel("getOrderItemById"));
+        entityModel.add(linkTo(methodOn(OrderItemController.class).deleteOrderItem(id)).withRel("deleteOrderItem"));
+
+        return entityModel;
+    }
 }
